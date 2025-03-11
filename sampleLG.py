@@ -1,5 +1,5 @@
-from lightglue import LightGlue, SuperPoint, DISK, SIFT, ALIKED, DoGHardNet
-from lightglue.utils import load_image, rbd
+from lightglue import LightGlue, SuperPoint, DISK, SIFT, ALIKED, DoGHardNet  # type: ignore
+from lightglue.utils import load_image, rbd  # type: ignore
 
 # SuperPoint+LightGlue
 extractor = SuperPoint(max_num_keypoints=2048).eval().cuda()  # load the extractor
@@ -10,7 +10,7 @@ extractor = DISK(max_num_keypoints=2048).eval().cuda()  # load the extractor
 matcher = LightGlue(features='disk').eval().cuda()  # load the matcher
 
 # load each image as a torch.Tensor on GPU with shape (3,H,W), normalized in [0,1]
-image0 = load_image('cart.pnng').cuda()
+image0 = load_image('cart.png').cuda()
 image1 = load_image('product.png').cuda()
 
 # extract local features
