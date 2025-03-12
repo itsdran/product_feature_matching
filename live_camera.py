@@ -3,7 +3,7 @@ import numpy as np
 import torch
 import os
 import time
-from lightglue import LightGlue, SuperPoint # type: ignore
+from lightglue import LightGlue, DISK # type: ignore
 from lightglue.utils import match_pair, load_image, rbd # type: ignore
 
 def main():
@@ -226,8 +226,8 @@ def live_object_tracking(cap, reference_object, temp_file):
         print(f"Using device: {device}")
         
         # Initialize feature extractors and matcher
-        extractor = SuperPoint(max_num_keypoints=2048).eval().to(device)
-        matcher = LightGlue(features='superpoint').eval().to(device)
+        extractor = DISK(max_num_keypoints=2048).eval().to(device)
+        matcher = LightGlue(features='disk').eval().to(device)
         
         # Load and extract features from the reference object (only need to do this once)
         reference_image = load_image(temp_file).to(device)
